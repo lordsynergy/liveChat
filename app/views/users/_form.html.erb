@@ -1,0 +1,37 @@
+<%= form_with model: @user, data: {turbo: false} do |f| %>
+  <div class="row justify-content-center">
+    <div class='col-md-6'>
+      <% if @user.errors.any? %>
+        <div class="mt">
+          <% @user.errors.full_messages.each do |message| %>
+            <p class="mb-sm text-red"><%= message %></p>
+          <% end %>
+        </div>
+      <% end %>
+
+      <form>
+        <div class="form-group mb-3">
+          <%= f.text_field :nickname, autofocus: true, placeholder: 'Name', class: 'form-control form-control-lg' %>
+        </div>
+
+        <div class="form-group mb-3">
+          <%= f.email_field :email, autofocus: true, placeholder: 'Email', class: 'form-control form-control-lg' %>
+        </div>
+
+        <div class="form-group mb-3">
+          <%= f.password_field :password, autofocus: true, placeholder: 'Password', class: 'form-control form-control-lg' %>
+        </div>
+
+        <div class="form-group mb-3">
+          <%= f.password_field :password_confirmation, autofocus: true, placeholder: 'Password confirmation',
+                               class: 'form-control form-control-lg' %>
+        </div>
+
+        <div class="actions mb-3">
+          <%= f.submit 'Submit', class: 'btn btn-info' %>
+        </div>
+      </form>
+<% end %>
+<%= render 'users/links' %>
+    </div>
+  </div>
