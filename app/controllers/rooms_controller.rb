@@ -4,27 +4,33 @@ class RoomsController < ApplicationController
   def index
     @rooms = Room.all
     @room = Room.new
+    @users = User.all
   end
 
   def show
   end
 
   def create
-    @room = current_user.rooms.build(room_params)
+    @room = current_user.room.build(room_params)
 
     if @room.save
-      redirect_to room_path(@room), notice: 'Новая комната создана'
+      redirect_to room_path(@room), notice: 'New room created!'
+      @room.broadcast_append_to :rooms
     else
-      flash.now[:alert] = 'Не удалось создать комнату. Укажите имя комнаты.'
+      flash.now[:alert] = 'Failed to create a room. Enter the name of the room.'
       @rooms = Room.all
       render :index
     end
   end
 
   def destroy
+    @room.broadcast_remove_to('rooms', target: "room_#{@room.id}")
+
+    RoomChannel.room_deleted(@room.id, current_user.id)
+
     @room.destroy
 
-    redirect_to root_path, notice: 'Комната успешно удалена'
+    redirect_to root_path, notice: 'Room was successfully deleted'
   end
 
   private

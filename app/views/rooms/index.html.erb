@@ -1,4 +1,6 @@
-<p id="notice"><%= notice %></p>
+<%= turbo_stream_from :rooms %>
+
+<p id="notice" xmlns="http://www.w3.org/1999/html"><%= notice %></p>
 <p id="alert"><%= alert %></p>
 
 <div class="mt-2 mb-3">
@@ -7,11 +9,20 @@
 
 <h2>Rooms</h2>
 
-<ul class="mt-4 list-unstyled">
-  <% @rooms.each do |room| %>
-    <%= turbo_stream_from "rooms" %>
-    <div id="rooms">
-      <%= render partial: 'room', locals: { room: room } %>
-    </div>
-  <% end %>
+<ul class="mt-4 list-unstyled" id="rooms">
+  <div class="list-group">
+    <% @rooms.each do |room| %>
+        <%= render room %>
+    <% end %>
+  </div>
+</ul>
+
+<h2>Users</h2>
+
+<ul class="mt-4 list-unstyled" id="rooms">
+  <div class="list-group">
+    <% @users.each do |user| %>
+        <%= render user %>
+    <% end %>
+  </div>
 </ul>

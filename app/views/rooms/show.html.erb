@@ -2,17 +2,19 @@
 
 <h1><%= @room.name %></h1>
 
-<%= link_to 'Exit', root_path %>
+<%= link_to 'Leave', root_path %>
 <% if current_user == @room.user %>
-  <%= button_to 'Delete room', @room.token, method: :delete,
+  <%= button_to 'Delete room', @room, method: :delete,
                 data: { turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger mt-3 mb-1' %>
 <% end %>
 
 <div class="chat-width">
   <div class="card chat-window mt-3">
     <div class="card-body">
-      <div class="messages">
-        <%= render @room.messages %>
+      <div class="message-window">
+        <div id="messages" class="messages" data-room-id=<%= @room.id %> data-current-user-id=<%= current_user.id %>>
+          <%= render @room.messages %>
+        </div>
       </div>
     </div>
   </div>

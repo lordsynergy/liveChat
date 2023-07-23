@@ -1,0 +1,29 @@
+<% if message.user == current_user %>
+  <div class="message own-message">
+    <div class="message-content">
+      <div class="message-sender text-end">
+        <%= message.user.nickname %>
+      </div>
+      <div class="message-text <%= 'bg-primary text-white' %> rounded p-2">
+        <%= message.body %>
+      </div>
+      <div class="message-time text-end small">
+        <%= message.created_at.strftime("%H:%M") %>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <div class="message">
+    <div class="message-content">
+      <div class="message-sender">
+        <%= message.user.nickname %>
+      </div>
+      <div class="message-text <%= 'bg-light' %> rounded p-2">
+        <%= message.body %>
+      </div>
+      <div class="message-time small">
+        <%= message.created_at.strftime("%H:%M") %>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   resources :users
 
   resources :rooms, only: %i[index show create destroy]
+
+  mount ActionCable.server => "/cable"
 end

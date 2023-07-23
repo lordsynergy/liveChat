@@ -21,11 +21,12 @@ class UsersController < ApplicationController
     @user = User.create(user_params)
 
     if @user.save
-      redirect_to root_path, notice: 'Вы успешно зарегистрировались!'
+      redirect_to root_path, notice: 'You have successfully registered!'
 
       session[:user_id] = @user.id
+      cookies.signed[:user_id] = @user.id
     else
-      flash.now[:alert] = 'Вы неправильно заполнили поля формы регистрации'
+      flash.now[:alert] = 'You have filled out the registration form fields incorrectly.'
 
       render :new
     end
@@ -33,11 +34,11 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to root_path, notice: 'Данные пользователя обновлены!'
+      redirect_to root_path, notice: 'User data updated!'
 
       session[:user_id] = @user.id
     else
-      flash.now[:alert] = 'При попытке сохранить пользователя возникли ошибки'
+      flash.now[:alert] = 'Errors occurred while trying to save the user.'
 
       render :edit
     end
@@ -48,7 +49,7 @@ class UsersController < ApplicationController
 
     session.delete(:user_id)
 
-    redirect_to root_path, notice: 'Пользователь удален'
+    redirect_to root_path, notice: 'User deleted.'
   end
 
   private

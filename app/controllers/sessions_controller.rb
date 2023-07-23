@@ -9,6 +9,7 @@ class SessionsController < ApplicationController
 
     if user.present?
       session[:user_id] = user.id
+      cookies.signed[:user_id] = user.id
 
       redirect_to root_path, notice: 'Welcome!'
     else
