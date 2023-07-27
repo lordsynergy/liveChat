@@ -1,24 +1,37 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Проект "Live Chat" - это веб-приложение для обмена сообщениями в режиме реального времени. Пользователи могут создавать 
+приватные и групповые комнаты для общения, а также обмениваться сообщениями с другими пользователями. Приложение использует 
+Ruby on Rails для бэкэнда, PostgreSQL в качестве базы данных и Action Cable для обеспечения взаимодействия в режиме реального времени.
 
-Things you may want to cover:
+Функциональность проекта:
 
-* Ruby version
+* Регистрация и аутентификация пользователей.
 
-* System dependencies
+* Создание приватных комнат для приватного общения с другими пользователями.
 
-* Configuration
+* Создание групповых комнат для общения с несколькими пользователями.
 
-* Database creation
+* Отправка и получение сообщений в режиме реального времени с помощью Action Cable.
 
-* Database initialization
+* Отображение списка доступных комнат и пользователей на главной странице.
 
-* How to run the test suite
+* Возможность удаления созданных пользователем комнат.
 
-* Services (job queues, cache servers, search engines, etc.)
+Технологии:
 
-* Deployment instructions
+* Ruby on Rails 7
 
-* ...
+* PostgreSQL
+
+* Action Cable (WebSockets)
+
+* Bootstrap
+
+Установка:
+
+1. Склонируйте репозиторий проекта на свой компьютер.
+2. Установите все необходимые гемы с помощью команды ```bundle install```
+3. Создайте базу данных и примените миграции с помощью команды ```rails db:create``` и ```rails db:migrate```.
+4. Запустите локальный сервер с помощью команды ```rails server```.
+5. Перейдите по адресу http://localhost:3000 в браузере для использования приложения.
