@@ -9,6 +9,7 @@ class RoomChannel < ApplicationCable::Channel
 
   def unsubscribed
     logger.info "Unsubscribed from RoomChannel"
+    stop_stream_from @room
   end
 
   def speak(data)

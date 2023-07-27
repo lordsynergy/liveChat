@@ -1,9 +1,15 @@
 <p id="notice"><%= notice %></p>
 
-<h1><%= @room.name %></h1>
+<h1>
+  <% if @room.is_private %>
+    <%= @user.nickname %>
+  <% else %>
+    <%= @room.name %>
+  <% end %>
+</h1>
 
-<%= link_to 'Leave', root_path %>
-<% if current_user == @room.user %>
+<%= link_to 'Leave', root_path, data: { turbo: false } %>
+<% if current_user == @room.user || @room.users.include?(current_user) %>
   <%= button_to 'Delete room', @room, method: :delete,
                 data: { turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger mt-3 mb-1' %>
 <% end %>

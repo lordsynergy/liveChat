@@ -39,10 +39,8 @@ function createRoomChannel(roomId, currentUserId, hold_messages) {
         messageWrapper.className = `message ${messageContentClass}`;
         messageWrapper.innerHTML = data.message;
 
-        // Применяем стили здесь
         const messageTextElement = messageWrapper.querySelector('.message-text');
         if (messageTextElement) {
-          // Очищаем классы
           messageTextElement.className = 'message-text rounded p-2';
 
           if (isCurrentUserMessage) {

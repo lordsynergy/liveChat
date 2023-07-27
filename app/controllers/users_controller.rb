@@ -54,15 +54,15 @@ class UsersController < ApplicationController
 
   private
 
-    def autorize_user
-      redirect_with_alert unless current_user == @user
-    end
+  def autorize_user
+    redirect_with_alert unless current_user == @user
+  end
 
-    def set_user
-      @user = User.find(params[:id])
-    end
+  def set_user
+    @user = User.find(params[:id])
+  end
 
-    def user_params
-      params.require(:user).permit(:nickname, :email, :password, :password_confirmation)
-    end
+  def user_params
+    params.require(:user).permit(:nickname, :email, :password, :password_confirmation)
+  end
 end
